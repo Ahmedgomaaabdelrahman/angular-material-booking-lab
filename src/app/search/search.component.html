@@ -1,0 +1,47 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title class="mb-3">Please Enter Lab aspects </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row mb-3">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Capacity" formControlName="capacity" (input)="searchWithCapacity()">
+            <mat-error *ngIf="addressForm.controls['capacity'].hasError('required')">
+              Lab Capacity <strong>required</strong>
+            </mat-error>
+
+            <mat-error *ngIf="addressForm.controls['capacity'].hasError('valid')">
+              Lab Capacity <strong>required</strong>
+            </mat-error>
+
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row mb-3" *ngIf="showDateRow">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="avail_date" (input)="searchWithDate()"
+              (dateChange)="searchWithDate()">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+
+            <mat-error *ngIf="addressForm.controls['avail_date'].hasError('required')">
+              Reservation Date is <strong>required</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="addressForm.controls['avail_date'].hasError('pattern') && addressForm.controls['avail_date'].touched">Invalid
+              date format. Please use mm/dd/yyyy</mat-error>
+
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <!-- <mat-card-actions class="d-grid gap-2 d-md-flex justify-content-md-end mr-3">
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </mat-card-actions> -->
+  </mat-card>
+</form>

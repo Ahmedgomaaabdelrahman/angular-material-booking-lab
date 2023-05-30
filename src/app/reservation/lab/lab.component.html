@@ -1,0 +1,10 @@
+<mat-card class="example-card mb-3 mt-3">
+    <img mat-card-image src="{{labData?.image ?? '../../../assets/imgs/hall.jpg'}}" alt="{{labData?.name}}">
+    <mat-card-content>
+        <h2> {{labData?.name}} </h2>
+        <p> <strong> Capacity : </strong> {{ labData?.capacity}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="onReserveLab()">Reserve</button>
+    </mat-card-actions>
+</mat-card>
